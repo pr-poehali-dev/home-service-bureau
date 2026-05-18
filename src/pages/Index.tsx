@@ -145,7 +145,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div>
             <div className="inline-flex items-center gap-2 bg-brand-yellow text-brand-dark font-bold px-4 py-2 rounded-full text-sm mb-6 animate-bounce-in">
-              <span>🌿</span> Разнорабочие для сада и двора
+              <span>📍</span> Немчиновка — сад и территория
             </div>
             <h1 className="font-nunito font-black text-5xl md:text-6xl text-brand-dark leading-tight mb-4 animate-fade-up" style={{animationDelay:'0.1s'}}>
               Порядок<br/>
@@ -170,7 +170,7 @@ export default function Index() {
             </div>
 
             <div className="flex flex-wrap gap-6 mt-10 animate-fade-up" style={{animationDelay:'0.4s'}}>
-              {[["🏡","300+ объектов"], ["⏱️","Выезд от 2 часов"], ["⭐","4.9 рейтинг"]].map(([e, t]) => (
+              {[["🏡","300+ объектов"], ["📍","Немчиновка и округа"], ["⭐","4.9 рейтинг"]].map(([e, t]) => (
                 <div key={t} className="flex items-center gap-2 text-sm font-bold text-gray-700">
                   <span className="text-2xl">{e}</span>{t}
                 </div>
@@ -391,7 +391,7 @@ export default function Index() {
               <span className="text-brand-green">доверяют участки</span>
             </h2>
             <p className="text-gray-600 font-semibold leading-relaxed mb-6">
-              Мы — бригада опытных разнорабочих для работы в саду, на придомовой территории и внутри дома.
+              Мы — бригада опытных разнорабочих, работаем в Немчиновке и ближайших посёлках.
               Приедем с инструментом, выполним задачу аккуратно и уберём за собой.
             </p>
             <div className="grid grid-cols-2 gap-4">
@@ -452,7 +452,7 @@ export default function Index() {
             {[
               { emoji: "📱", title: "Телефон", value: "+7 (900) 000-00-00", href: "tel:+79000000000" },
               { emoji: "💬", title: "WhatsApp", value: "Написать сейчас", href: "https://wa.me/79000000000" },
-              { emoji: "📍", title: "Территория", value: "Весь город и пригород", href: "#" },
+              { emoji: "📍", title: "Район работы", value: "Немчиновка и окрестности", href: "#" },
             ].map(c => (
               <a
                 key={c.title}
