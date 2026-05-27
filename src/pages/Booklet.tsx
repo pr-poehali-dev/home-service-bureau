@@ -1,9 +1,36 @@
+import { useRef, useState } from "react";
 import Icon from "@/components/ui/icon";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/f4d5704d-c0ed-4c1e-ab3e-8a89a6fdab8e.jpg";
 
 export default function Booklet() {
+  const pageRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+
   const handlePrint = () => window.print();
+
+  const handleDownload = async () => {
+    if (!pageRef.current) return;
+    setLoading(true);
+    try {
+      const canvas = await html2canvas(pageRef.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#fff",
+      });
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH);
+      pdf.save("zelenye-ruki-buklet.pdf");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -41,18 +68,26 @@ export default function Booklet() {
           <Icon name="ArrowLeft" size={16} /> На сайт
         </a>
         <button
-          onClick={handlePrint}
-          className="bg-green-600 text-white font-bold px-5 py-2 rounded-xl shadow-lg flex items-center gap-2 hover:bg-green-700 transition"
+          onClick={handleDownload}
+          disabled={loading}
+          className="bg-green-600 text-white font-bold px-5 py-2 rounded-xl shadow-lg flex items-center gap-2 hover:bg-green-700 transition disabled:opacity-60"
         >
-          <Icon name="Download" size={16} /> Скачать / Печать PDF
+          <Icon name={loading ? "Loader2" : "FileDown"} size={16} />
+          {loading ? "Генерация..." : "Скачать PDF"}
+        </button>
+        <button
+          onClick={handlePrint}
+          className="bg-gray-700 text-white font-bold px-5 py-2 rounded-xl shadow-lg flex items-center gap-2 hover:bg-gray-800 transition"
+        >
+          <Icon name="Printer" size={16} /> Печать
         </button>
       </div>
 
       <div className="no-print min-h-screen bg-gray-100 py-10 flex flex-col items-center">
-        <p className="text-gray-500 font-semibold mb-6 text-sm">Предпросмотр буклета A4 · Нажмите «Скачать / Печать PDF»</p>
+        <p className="text-gray-500 font-semibold mb-6 text-sm">Предпросмотр буклета A4</p>
       </div>
 
-      <div className="print-page">
+      <div className="print-page" ref={pageRef}>
 
         {/* HEADER */}
         <div style={{ background: 'linear-gradient(135deg, #3DBA6F 0%, #A8E063 100%)', display: 'flex', alignItems: 'stretch', minHeight: 180 }}>
