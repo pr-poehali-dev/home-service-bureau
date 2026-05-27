@@ -466,13 +466,23 @@ export default function Index() {
             ))}
           </div>
 
-          <a
-            href="#бронирование"
-            className="inline-flex items-center gap-2 bg-brand-green font-extrabold text-xl px-10 py-5 rounded-2xl btn-bounce shadow-2xl shadow-green-900/40"
-          >
-            <Icon name="CalendarCheck" size={24} />
-            Забронировать выезд
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#бронирование"
+              className="inline-flex items-center gap-2 bg-brand-green font-extrabold text-xl px-10 py-5 rounded-2xl btn-bounce shadow-2xl shadow-green-900/40"
+            >
+              <Icon name="CalendarCheck" size={24} />
+              Забронировать выезд
+            </a>
+            <a
+              href="/booklet"
+              target="_blank"
+              className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border-2 border-white/30 text-white font-extrabold text-xl px-10 py-5 rounded-2xl btn-bounce transition"
+            >
+              <Icon name="FileDown" size={24} />
+              Буклет PDF
+            </a>
+          </div>
         </div>
       </section>
 
