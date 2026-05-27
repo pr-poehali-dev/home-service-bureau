@@ -18,12 +18,12 @@ const services = [
 const plans = [
   {
     name: "Разовый выезд",
-    hours: "от 2 часов",
-    price: "от 4 000 ₽",
-    perHour: "2 000 ₽/час",
+    hours: "от 3 часов",
+    price: "от 4 500 ₽",
+    perHour: "1 500 ₽/час",
     color: "bg-yellow-400",
     textColor: "text-yellow-900",
-    features: ["Один разнорабочий", "Инструмент с собой", "Любые задачи"],
+    features: ["Один разнорабочий", "Любые задачи"],
     highlight: false,
   },
   {
@@ -67,6 +67,7 @@ export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
   const [teamWorkers, setTeamWorkers] = useState(2);
+  const [ownTool, setOwnTool] = useState(false);
 
   const isSpecialist = ["Электрик", "Сантехник"].includes(bookingService);
   const hourRate = isSpecialist ? 3000 : 1500;
@@ -420,10 +421,29 @@ export default function Index() {
                       </div>
                     </div>
                   </>
+                ) : p.name === "Разовый выезд" ? (
+                  <>
+                    <div className="font-black text-4xl text-yellow-900 mb-1">
+                      {ownTool ? "от 4 500 ₽" : "от 6 000 ₽"}
+                    </div>
+                    <div className="text-sm font-bold text-yellow-800 mb-4">
+                      {ownTool ? "1 500 ₽/ч · инструмент ваш" : "2 000 ₽/ч · инструмент наш"}
+                    </div>
+                    <div className="bg-yellow-300/60 rounded-2xl p-1 flex mb-5 gap-1">
+                      <button
+                        onClick={() => setOwnTool(true)}
+                        className={`flex-1 py-2 rounded-xl font-bold text-sm transition ${ownTool ? "bg-white text-yellow-900 shadow" : "text-yellow-800 hover:bg-yellow-200/60"}`}
+                      >🔑 Инструмент ваш</button>
+                      <button
+                        onClick={() => setOwnTool(false)}
+                        className={`flex-1 py-2 rounded-xl font-bold text-sm transition ${!ownTool ? "bg-white text-yellow-900 shadow" : "text-yellow-800 hover:bg-yellow-200/60"}`}
+                      >🛠️ Инструмент наш</button>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className={`font-black text-4xl ${p.textColor} mb-1`}>{p.price}</div>
-                    <div className={`text-sm font-bold ${p.highlight ? "text-white/70" : "text-gray-500"} mb-6`}>{p.perHour}</div>
+                    <div className={`text-sm font-bold text-gray-500 mb-6`}>{p.perHour}</div>
                   </>
                 )}
 
