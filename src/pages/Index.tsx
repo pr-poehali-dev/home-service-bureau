@@ -154,10 +154,30 @@ export default function Index() {
                 <span className="absolute -bottom-1 left-0 w-full h-3 bg-brand-lime opacity-50 -z-10 rounded" />
               </span>
             </h1>
-            <p className="text-lg text-gray-600 mb-8 font-semibold animate-fade-up" style={{animationDelay:'0.2s'}}>
-              Сад, газон, уборка, мелкий ремонт — приедем, сделаем, уберём за собой.<br/>
-              <span className="text-brand-green font-extrabold text-xl">1 500 ₽/час</span>, оплата после работы.
-            </p>
+            <div className="mb-8 animate-fade-up" style={{animationDelay:'0.2s'}}>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {[
+                  { label: 'Сад', emoji: '🌿' },
+                  { label: 'Газон', emoji: '✂️' },
+                  { label: 'Уборка', emoji: '🍂' },
+                  { label: 'Мелкий ремонт', emoji: '🔨' },
+                  { label: 'Электрик', emoji: '⚡' },
+                  { label: 'Сантехник', emoji: '🔧' },
+                  { label: 'Уберём за собой', emoji: '✨' },
+                ].map(({ label, emoji }) => (
+                  <span
+                    key={label}
+                    className="group relative inline-flex items-center gap-1.5 bg-white border-2 border-green-100 hover:border-brand-green text-brand-dark font-bold text-sm px-3 py-1.5 rounded-xl cursor-default transition-all hover:shadow-md hover:-translate-y-0.5 select-none"
+                  >
+                    <span className="text-base transition-all duration-200 group-hover:scale-125">{emoji}</span>
+                    {label}
+                  </span>
+                ))}
+              </div>
+              <p className="text-base text-gray-500 font-semibold">
+                <span className="text-brand-green font-extrabold text-xl">1 500 ₽/час</span> · оплата после работы
+              </p>
+            </div>
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{animationDelay:'0.3s'}}>
               <a href="#бронирование" className="bg-brand-green text-white font-extrabold text-lg px-8 py-4 rounded-2xl btn-bounce shadow-lg shadow-green-200 flex items-center gap-2">
                 <Icon name="CalendarCheck" size={20} />
