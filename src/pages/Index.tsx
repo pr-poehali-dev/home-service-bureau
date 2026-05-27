@@ -392,7 +392,7 @@ export default function Index() {
                 {p.highlight ? (
                   <>
                     <div className="font-black text-4xl text-white mb-1">
-                      от {(1500 * teamWorkers * 3).toLocaleString("ru")} ₽
+                      {(1500 * teamWorkers * 3).toLocaleString("ru")} ₽
                     </div>
                     <div className="text-sm font-bold text-white/70 mb-4">
                       1 500 ₽/ч × {teamWorkers} чел. × 3 ч
@@ -424,7 +424,7 @@ export default function Index() {
                 ) : p.name === "Разовый выезд" ? (
                   <>
                     <div className="font-black text-4xl text-yellow-900 mb-1">
-                      {ownTool ? "от 4 500 ₽" : "от 6 000 ₽"}
+                      {ownTool ? "4 500 ₽" : "6 000 ₽"}
                     </div>
                     <div className="text-sm font-bold text-yellow-800 mb-4">
                       {ownTool ? "1 500 ₽/ч · инструмент ваш" : "2 000 ₽/ч · инструмент наш"}
