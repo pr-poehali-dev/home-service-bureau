@@ -61,7 +61,7 @@ export default function Index() {
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
   const [bookingService, setBookingService] = useState("");
-  const [bookingHours, setBookingHours] = useState("2");
+  const [bookingHours, setBookingHours] = useState("3");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
 
@@ -293,7 +293,7 @@ export default function Index() {
                     onChange={e => setBookingHours(e.target.value)}
                     className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition"
                   >
-                    {[2,3,4,5,6,7,8].map(h => <option key={h} value={h}>{h} ч</option>)}
+                    {[3,4,5,6,7,8].map(h => <option key={h} value={h}>{h} ч</option>)}
                   </select>
                 </div>
                 <div className="sm:col-span-2">
