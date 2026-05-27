@@ -67,7 +67,9 @@ export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
 
-  const total = parseInt(bookingHours || "0") * 1500;
+  const isSpecialist = ["Электрик", "Сантехник"].includes(bookingService);
+  const hourRate = isSpecialist ? 3000 : 1500;
+  const total = parseInt(bookingHours || "0") * hourRate;
 
   const handleBook = () => {
     if (bookingDate && bookingService) {
@@ -341,7 +343,10 @@ export default function Index() {
 
               {total > 0 && (
                 <div className="mt-5 bg-green-50 border-2 border-green-200 rounded-2xl px-5 py-4 flex items-center justify-between">
-                  <span className="font-bold text-gray-600">Предварительная стоимость:</span>
+                  <div>
+                    <span className="font-bold text-gray-600">Предварительная стоимость:</span>
+                    <div className="text-xs text-gray-400 font-semibold mt-0.5">{hourRate.toLocaleString("ru")} ₽/ч × {bookingHours} ч</div>
+                  </div>
                   <span className="font-black text-2xl text-brand-green">{total.toLocaleString("ru")} ₽</span>
                 </div>
               )}
