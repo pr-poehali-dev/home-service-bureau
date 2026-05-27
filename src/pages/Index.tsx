@@ -188,11 +188,11 @@ export default function Index() {
               />
               {/* Badge */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 font-bold text-brand-dark z-20 border-2 border-brand-yellow animate-float">
-                <div className="text-2xl font-black text-brand-green">2 000 ₽</div>
+                <div className="text-2xl font-black text-brand-green">1 500 ₽</div>
                 <div className="text-xs text-gray-500">в час / с человека</div>
               </div>
               <div className="absolute -top-4 -right-4 bg-brand-coral text-white rounded-2xl shadow-xl px-3 py-2 font-bold text-sm z-20 animate-float2">
-                🚀 Срочный выезд
+                🚀 Срочный выезд — без доплат
               </div>
             </div>
           </div>
