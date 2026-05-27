@@ -201,7 +201,7 @@ export default function Index() {
             </div>
 
             <div className="flex flex-wrap gap-6 mt-10 animate-fade-up" style={{animationDelay:'0.4s'}}>
-              {[["🏡","300+ объектов"], ["📍","Немчиновка и округа"], ["⭐","4.9 рейтинг"]].map(([e, t]) => (
+              {[["🏡","300+ объектов"], ["📍","Немчиновка и округа"]].map(([e, t]) => (
                 <div key={t} className="flex items-center gap-2 text-sm font-bold text-gray-700">
                   <span className="text-2xl">{e}</span>{t}
                 </div>
