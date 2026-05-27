@@ -65,7 +65,7 @@ export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
 
-  const total = parseInt(bookingHours || "0") * 2000;
+  const total = parseInt(bookingHours || "0") * 1500;
 
   const handleBook = () => {
     if (bookingDate && bookingService) {
