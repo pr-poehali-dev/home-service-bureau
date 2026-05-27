@@ -43,7 +43,7 @@ const plans = [
     perHour: "1 750 ₽/час",
     color: "bg-violet-400",
     textColor: "text-white",
-    features: ["Фиксированный день", "Скидка 12%", "Приоритетный выезд"],
+    features: ["Фиксированный день", "Большая скидка", "Приоритетный выезд"],
     highlight: false,
   },
 ];
