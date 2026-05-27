@@ -155,28 +155,39 @@ export default function Index() {
               </span>
             </h1>
             <div className="mb-8 animate-fade-up" style={{animationDelay:'0.2s'}}>
-              <div className="flex flex-wrap gap-2 mb-3">
+              <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Что мы делаем</p>
+              <div className="grid grid-cols-2 gap-2 mb-5">
                 {[
-                  { label: 'Сад', emoji: '🌿' },
-                  { label: 'Газон', emoji: '✂️' },
-                  { label: 'Уборка', emoji: '🍂' },
-                  { label: 'Мелкий ремонт', emoji: '🔨' },
-                  { label: 'Электрик', emoji: '⚡' },
-                  { label: 'Сантехник', emoji: '🔧' },
-                  { label: 'Уберём за собой', emoji: '✨' },
-                ].map(({ label, emoji }) => (
-                  <span
+                  { label: 'Сад', emoji: '🌿', desc: 'Обрезка, посадка, уход' },
+                  { label: 'Газон', emoji: '✂️', desc: 'Покос, стрижка, уборка' },
+                  { label: 'Уборка', emoji: '🍂', desc: 'Листья, мусор, ветки' },
+                  { label: 'Мелкий ремонт', emoji: '🔨', desc: 'Заборы, беседки, постройки' },
+                  { label: 'Электрик', emoji: '⚡', desc: 'Проводка, розетки, свет' },
+                  { label: 'Сантехник', emoji: '🔧', desc: 'Трубы, смесители, полив' },
+                ].map(({ label, emoji, desc }) => (
+                  <div
                     key={label}
-                    className="group relative inline-flex items-center gap-1.5 bg-white border-2 border-green-100 hover:border-brand-green text-brand-dark font-bold text-sm px-3 py-1.5 rounded-xl cursor-default transition-all hover:shadow-md hover:-translate-y-0.5 select-none"
+                    className="group flex items-center gap-3 bg-white border-2 border-green-100 hover:border-brand-green hover:bg-green-50 rounded-2xl px-4 py-3 cursor-default transition-all hover:shadow-md hover:-translate-y-0.5 select-none"
                   >
-                    <span className="text-base transition-all duration-200 group-hover:scale-125">{emoji}</span>
-                    {label}
-                  </span>
+                    <span className="text-2xl transition-transform duration-200 group-hover:scale-125 leading-none">{emoji}</span>
+                    <div>
+                      <div className="font-extrabold text-brand-dark text-sm leading-tight">{label}</div>
+                      <div className="text-gray-400 text-xs font-semibold leading-tight">{desc}</div>
+                    </div>
+                  </div>
                 ))}
               </div>
-              <p className="text-base text-gray-500 font-semibold">
-                <span className="text-brand-green font-extrabold text-xl">1 500 ₽/час</span> · оплата после работы
-              </p>
+              <div className="flex items-center gap-3 bg-brand-green/10 border-2 border-brand-green/20 rounded-2xl px-4 py-3">
+                <span className="text-2xl">✨</span>
+                <div>
+                  <div className="font-extrabold text-brand-dark text-sm">Уберём за собой</div>
+                  <div className="text-gray-400 text-xs font-semibold">Всегда оставляем порядок после работы</div>
+                </div>
+                <div className="ml-auto text-right">
+                  <div className="text-brand-green font-black text-xl leading-tight">1 500 ₽/ч</div>
+                  <div className="text-gray-400 text-xs font-bold">оплата после</div>
+                </div>
+              </div>
             </div>
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{animationDelay:'0.3s'}}>
               <a href="#бронирование" className="bg-brand-green text-white font-extrabold text-lg px-8 py-4 rounded-2xl btn-bounce shadow-lg shadow-green-200 flex items-center gap-2">
