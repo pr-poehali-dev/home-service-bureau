@@ -11,6 +11,8 @@ const services = [
   { icon: "Shovel", emoji: "⛏️", title: "Земляные работы", desc: "Вскопка грядок, посадка растений, дренаж", color: "bg-orange-100 border-orange-300" },
   { icon: "Hammer", emoji: "🔨", title: "Мелкий ремонт", desc: "Заборы, ворота, беседки, садовые постройки", color: "bg-violet-100 border-violet-300" },
   { icon: "Sparkles", emoji: "✨", title: "Уборка помещений", desc: "Генеральная и поддерживающая уборка дома", color: "bg-sky-100 border-sky-300" },
+  { icon: "Zap", emoji: "⚡", title: "Электрик", desc: "Проводка, розетки, выключатели, освещение, монтаж щитков", color: "bg-amber-100 border-amber-300" },
+  { icon: "Wrench", emoji: "🔧", title: "Сантехник", desc: "Трубы, смесители, насосы, система полива, унитазы", color: "bg-blue-100 border-blue-300" },
 ];
 
 const plans = [
