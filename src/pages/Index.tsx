@@ -29,11 +29,11 @@ const plans = [
   {
     name: "Команда",
     hours: "от 3 часов",
-    price: "от 8 000 ₽",
-    perHour: "2 000 ₽/час × 2",
+    price: "от 9 000 ₽",
+    perHour: "1 500 ₽/час × чел.",
     color: "bg-brand-green",
     textColor: "text-white",
-    features: ["Два разнорабочих", "Работа вдвое быстрее", "Крупные объёмы"],
+    features: ["2 и более разнорабочих", "Работа значительно быстрее", "Крупные объёмы"],
     highlight: true,
   },
   {
@@ -66,6 +66,7 @@ export default function Index() {
   const [bookingHours, setBookingHours] = useState("3");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
+  const [teamWorkers, setTeamWorkers] = useState(2);
 
   const isSpecialist = ["Электрик", "Сантехник"].includes(bookingService);
   const hourRate = isSpecialist ? 3000 : 1500;
@@ -386,8 +387,46 @@ export default function Index() {
                 )}
                 <h3 className={`font-black text-2xl ${p.textColor} mb-1`}>{p.name}</h3>
                 <p className={`text-sm font-semibold ${p.highlight ? "text-white/80" : "text-gray-600"} mb-4`}>{p.hours}</p>
-                <div className={`font-black text-4xl ${p.textColor} mb-1`}>{p.price}</div>
-                <div className={`text-sm font-bold ${p.highlight ? "text-white/70" : "text-gray-500"} mb-6`}>{p.perHour}</div>
+
+                {p.highlight ? (
+                  <>
+                    <div className="font-black text-4xl text-white mb-1">
+                      от {(1500 * teamWorkers * 3).toLocaleString("ru")} ₽
+                    </div>
+                    <div className="text-sm font-bold text-white/70 mb-4">
+                      1 500 ₽/ч × {teamWorkers} чел. × 3 ч
+                    </div>
+                    <div className="bg-white/20 rounded-2xl p-3 mb-5">
+                      <p className="text-white font-bold text-xs mb-2">👥 Количество рабочих:</p>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setTeamWorkers(w => Math.max(2, w - 1))}
+                          className="w-8 h-8 rounded-xl bg-white/30 hover:bg-white/50 text-white font-black text-lg leading-none transition flex items-center justify-center"
+                        >−</button>
+                        <span className="flex-1 text-center font-black text-2xl text-white">{teamWorkers}</span>
+                        <button
+                          onClick={() => setTeamWorkers(w => Math.min(10, w + 1))}
+                          className="w-8 h-8 rounded-xl bg-white/30 hover:bg-white/50 text-white font-black text-lg leading-none transition flex items-center justify-center"
+                        >+</button>
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        {[2,3,4,5,6,7,8,9,10].map(n => (
+                          <button
+                            key={n}
+                            onClick={() => setTeamWorkers(n)}
+                            className={`w-6 h-6 rounded-lg text-xs font-black transition ${teamWorkers === n ? "bg-white text-brand-green" : "bg-white/20 text-white hover:bg-white/40"}`}
+                          >{n}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={`font-black text-4xl ${p.textColor} mb-1`}>{p.price}</div>
+                    <div className={`text-sm font-bold ${p.highlight ? "text-white/70" : "text-gray-500"} mb-6`}>{p.perHour}</div>
+                  </>
+                )}
+
                 <ul className="space-y-2 mb-8">
                   {p.features.map(f => (
                     <li key={f} className={`flex items-center gap-2 font-semibold text-sm ${p.textColor}`}>
