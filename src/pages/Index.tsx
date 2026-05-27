@@ -68,6 +68,13 @@ export default function Index() {
   const [bookingDone, setBookingDone] = useState(false);
   const [teamWorkers, setTeamWorkers] = useState(2);
   const [ownTool, setOwnTool] = useState(false);
+  const [subPlan, setSubPlan] = useState(0);
+
+  const subOptions = [
+    { visits: 4,  discount: 0.15, label: "4 посещения" },
+    { visits: 8,  discount: 0.20, label: "8 посещений" },
+    { visits: 14, discount: 0.25, label: "14 посещений" },
+  ];
 
   const isSpecialist = ["Электрик", "Сантехник"].includes(bookingService);
   const hourRate = isSpecialist ? 3000 : 1500;
@@ -440,6 +447,37 @@ export default function Index() {
                       >🛠️ Инструмент наш</button>
                     </div>
                   </>
+                ) : p.name === "Абонемент" ? (
+                  (() => {
+                    const opt = subOptions[subPlan];
+                    const full = opt.visits * 3 * 1500;
+                    const discounted = Math.round(full * (1 - opt.discount));
+                    return (
+                      <>
+                        <div className="flex flex-col gap-1 mb-4">
+                          <div className="flex items-baseline gap-2">
+                            <span className="line-through text-white/50 text-xl font-bold">{full.toLocaleString("ru")} ₽</span>
+                            <span className="font-black text-4xl text-white">{discounted.toLocaleString("ru")} ₽</span>
+                          </div>
+                          <div className="text-sm font-bold text-white/70">
+                            скидка {opt.discount * 100}% · {opt.visits} × 3 ч · 1 чел.
+                          </div>
+                        </div>
+                        <div className="bg-white/20 rounded-2xl p-1 flex flex-col gap-1 mb-5">
+                          {subOptions.map((o, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setSubPlan(idx)}
+                              className={`flex items-center justify-between px-3 py-2 rounded-xl font-bold text-sm transition ${subPlan === idx ? "bg-white text-violet-700 shadow" : "text-white hover:bg-white/20"}`}
+                            >
+                              <span>{o.label}/мес</span>
+                              <span className="text-xs font-black opacity-80">−{o.discount * 100}%</span>
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()
                 ) : (
                   <>
                     <div className={`font-black text-4xl ${p.textColor} mb-1`}>{p.price}</div>
