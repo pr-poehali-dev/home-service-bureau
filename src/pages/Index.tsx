@@ -66,6 +66,7 @@ export default function Index() {
   const [bookingHours, setBookingHours] = useState("3");
   const [bookingName, setBookingName] = useState("");
   const [bookingPhone, setBookingPhone] = useState("");
+  const [bookingComment, setBookingComment] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
   const [teamWorkers, setTeamWorkers] = useState(2);
@@ -99,7 +100,8 @@ export default function Index() {
       `📅 Дата: ${dateStr}\n` +
       `🕐 Время: ${bookingTime || "—"}\n` +
       `⏱️ Часов: ${bookingHours}\n` +
-      `💰 Сумма: ${total.toLocaleString("ru")} ₽`;
+      `💰 Сумма: ${total.toLocaleString("ru")} ₽` +
+      (bookingComment ? `\n\n📝 Описание: ${bookingComment}` : "");
     window.open(`https://wa.me/79361414232?text=${encodeURIComponent(text)}`, "_blank");
     setBookingDone(true);
   };
@@ -376,6 +378,16 @@ export default function Index() {
                     onChange={e => setBookingPhone(e.target.value)}
                     placeholder="+7 (___) ___ __-__"
                     className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block font-bold text-brand-dark mb-2 text-sm">📝 Описание задачи (необязательно)</label>
+                  <textarea
+                    value={bookingComment}
+                    onChange={e => setBookingComment(e.target.value)}
+                    rows={3}
+                    placeholder="Опишите задачу подробнее: что нужно сделать, адрес, особенности участка..."
+                    className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition resize-none"
                   />
                 </div>
               </div>
