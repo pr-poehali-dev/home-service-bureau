@@ -70,6 +70,12 @@ export default function Index() {
   const [ownTool, setOwnTool] = useState(false);
   const [subPlan, setSubPlan] = useState(0);
 
+  const minBookingDate = (() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().slice(0, 10);
+  })();
+
   const subOptions = [
     { visits: 4,  discount: 0.15, label: "4 посещения" },
     { visits: 8,  discount: 0.20, label: "8 посещений" },
@@ -302,7 +308,7 @@ export default function Index() {
                     type="date"
                     value={bookingDate}
                     onChange={e => setBookingDate(e.target.value)}
-                    min={new Date().toISOString().split("T")[0]}
+                    min={minBookingDate}
                     className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition"
                   />
                 </div>
