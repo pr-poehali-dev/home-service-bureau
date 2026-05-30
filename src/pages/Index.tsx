@@ -64,6 +64,8 @@ export default function Index() {
   const [bookingTime, setBookingTime] = useState("");
   const [bookingService, setBookingService] = useState("");
   const [bookingHours, setBookingHours] = useState("3");
+  const [bookingName, setBookingName] = useState("");
+  const [bookingPhone, setBookingPhone] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [bookingDone, setBookingDone] = useState(false);
   const [teamWorkers, setTeamWorkers] = useState(2);
@@ -87,9 +89,19 @@ export default function Index() {
   const total = parseInt(bookingHours || "0") * hourRate;
 
   const handleBook = () => {
-    if (bookingDate && bookingService) {
-      setBookingDone(true);
-    }
+    if (!bookingDate || !bookingService || !bookingPhone) return;
+    const dateStr = new Date(bookingDate).toLocaleDateString("ru-RU");
+    const text =
+      `🌿 *Новая заявка с сайта «Зелёные руки»*\n\n` +
+      `👤 Имя: ${bookingName || "—"}\n` +
+      `📱 Телефон: ${bookingPhone}\n` +
+      `🛠️ Услуга: ${bookingService}\n` +
+      `📅 Дата: ${dateStr}\n` +
+      `🕐 Время: ${bookingTime || "—"}\n` +
+      `⏱️ Часов: ${bookingHours}\n` +
+      `💰 Сумма: ${total.toLocaleString("ru")} ₽`;
+    window.open(`https://wa.me/79361414232?text=${encodeURIComponent(text)}`, "_blank");
+    setBookingDone(true);
   };
 
   return (
@@ -346,10 +358,22 @@ export default function Index() {
                     {[3,4,5,6,7,8].map(h => <option key={h} value={h}>{h} ч</option>)}
                   </select>
                 </div>
-                <div className="sm:col-span-2">
+                <div>
+                  <label className="block font-bold text-brand-dark mb-2 text-sm">👤 Ваше имя</label>
+                  <input
+                    type="text"
+                    value={bookingName}
+                    onChange={e => setBookingName(e.target.value)}
+                    placeholder="Как к вам обращаться"
+                    className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition"
+                  />
+                </div>
+                <div>
                   <label className="block font-bold text-brand-dark mb-2 text-sm">📱 Ваш телефон</label>
                   <input
                     type="tel"
+                    value={bookingPhone}
+                    onChange={e => setBookingPhone(e.target.value)}
                     placeholder="+7 (___) ___ __-__"
                     className="w-full border-2 border-green-200 rounded-2xl px-4 py-3 font-semibold text-brand-dark focus:outline-none focus:border-brand-green transition"
                   />
@@ -370,10 +394,10 @@ export default function Index() {
                 onClick={handleBook}
                 className="mt-6 w-full bg-brand-green text-white font-extrabold text-lg py-4 rounded-2xl btn-bounce shadow-lg shadow-green-200 flex items-center justify-center gap-2"
               >
-                <Icon name="CalendarCheck" size={22} />
-                Отправить заявку
+                <Icon name="MessageCircle" size={22} />
+                Отправить заявку в WhatsApp
               </button>
-              <p className="text-center text-xs text-gray-400 mt-3 font-medium">Оплата после выполнения работ. Без предоплаты.</p>
+              <p className="text-center text-xs text-gray-400 mt-3 font-medium">Заявка откроется в WhatsApp · Оплата после работы, без предоплаты</p>
             </div>
           )}
         </div>
