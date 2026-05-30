@@ -585,8 +585,8 @@ export default function Index() {
 
           <div className="grid sm:grid-cols-3 gap-6 mb-12">
             {[
-              { emoji: "📱", title: "Телефон", value: "+7 (900) 000-00-00", href: "tel:+79000000000" },
-              { emoji: "💬", title: "WhatsApp", value: "Написать сейчас", href: "https://wa.me/79000000000" },
+              { emoji: "📱", title: "Телефон", value: "8 (936) 141-42-32", href: "tel:+79361414232" },
+              { emoji: "💬", title: "WhatsApp", value: "Написать сейчас", href: "https://wa.me/79361414232" },
               { emoji: "📍", title: "Район работы", value: "Немчиновка и окрестности", href: "#" },
             ].map(c => (
               <a
