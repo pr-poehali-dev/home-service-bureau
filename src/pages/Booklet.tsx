@@ -4,9 +4,8 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const IMG = {
-  mower:  "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/7fae84f7-deb7-412c-b9e8-9f5dd31f5a2e.jpg",
-  garden: "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/302f505b-14d8-406e-98a4-3164f6b02976.jpg",
-  repair: "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/8e4d9aa9-9c40-4646-b57f-db70b35b9bbb.jpg",
+  mower: "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/f4d5704d-c0ed-4c1e-ab3e-8a89a6fdab8e.jpg",
+  team:  "https://cdn.poehali.dev/projects/51c43cc5-e4ab-4fb5-b4d5-6eeedb27040f/files/0d9cfec7-5c0a-41db-b0ae-c686ea649482.jpg",
 };
 
 const PHONE = "8 (936) 141-42-32";
@@ -81,15 +80,17 @@ export default function Booklet() {
         {/* ================= СТРАНИЦА 1 ================= */}
         <div ref={page1Ref} style={pageStyle} className="a5">
 
-          {/* Главное фото на всю ширину */}
-          <div style={{ position: "relative", height: 235, overflow: "hidden" }}>
+          {/* Главное фото газонокосильщика */}
+          <div style={{
+            position: "relative", height: 240, overflow: "hidden",
+            background: "linear-gradient(135deg, #A8E063 0%, #3DBA6F 100%)"
+          }}>
             <img src={IMG.mower} alt="" crossOrigin="anonymous"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%", display: "block" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(15,40,15,0.78) 78%, rgba(15,40,15,0.98) 100%)" }} />
+              style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center bottom", display: "block" }} />
 
             <div style={{ position: "absolute", top: 16, left: 18, display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 30 }}>🌿</span>
-              <span style={{ fontFamily: "Caveat, cursive", fontSize: 34, color: "#fff", fontWeight: 700, textShadow: "0 2px 10px rgba(0,0,0,0.45)", lineHeight: 1 }}>
+              <span style={{ fontFamily: "Caveat, cursive", fontSize: 34, color: "#1A2E1A", fontWeight: 700, textShadow: "0 2px 10px rgba(255,255,255,0.6)", lineHeight: 1 }}>
                 Зелёные руки
               </span>
             </div>
@@ -103,31 +104,28 @@ export default function Booklet() {
             }}>
               🚀 Срочный выезд — без доплат
             </div>
+          </div>
 
-            <div style={{ position: "absolute", bottom: 18, left: 22, right: 22 }}>
-              <div style={{
-                fontWeight: 900, fontSize: 26, color: "#fff", lineHeight: 1.15,
-                textShadow: "0 2px 14px rgba(0,0,0,0.55)", marginBottom: 10,
-                letterSpacing: -0.3
+          {/* Заголовок-плашка после фото */}
+          <div style={{
+            background: "linear-gradient(135deg, #1A7A3F 0%, #3DBA6F 100%)",
+            padding: "12px 22px",
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12
+          }}>
+            <div style={{
+              fontWeight: 900, fontSize: 18, color: "#fff", lineHeight: 1.2,
+              letterSpacing: -0.3
+            }}>
+              Ухоженный сад и порядок во дворе
+            </div>
+            <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
+              <span style={{
+                background: "#FFD93D", color: "#1A2E1A",
+                borderRadius: 20, padding: "5px 12px",
+                fontWeight: 900, fontSize: 13, letterSpacing: 0.4
               }}>
-                Ухоженный сад<br/>и порядок во дворе
-              </div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                <span style={{
-                  background: "#FFD93D", color: "#1A2E1A",
-                  borderRadius: 22, padding: "5px 14px",
-                  fontWeight: 900, fontSize: 14, letterSpacing: 0.4
-                }}>
-                  📍 НЕМЧИНОВКА
-                </span>
-                <span style={{
-                  background: "rgba(255,255,255,0.18)", color: "#fff",
-                  borderRadius: 22, padding: "5px 14px",
-                  fontWeight: 800, fontSize: 13
-                }}>
-                  и окрестности
-                </span>
-              </div>
+                📍 НЕМЧИНОВКА
+              </span>
             </div>
           </div>
 
@@ -227,43 +225,30 @@ export default function Booklet() {
         {/* ================= СТРАНИЦА 2 ================= */}
         <div ref={page2Ref} style={pageStyle} className="a5">
 
-          <div style={{ display: "flex", height: 150 }}>
-            <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
-              <img src={IMG.garden} alt="" crossOrigin="anonymous"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%)" }} />
-              <div style={{
-                position: "absolute", bottom: 10, left: 0, right: 0, textAlign: "center",
-                fontWeight: 900, fontSize: 14, color: "#fff", textShadow: "0 2px 8px rgba(0,0,0,0.7)"
-              }}>
-                🌿 Сад под ключ
-              </div>
-            </div>
-            <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
-              <img src={IMG.repair} alt="" crossOrigin="anonymous"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%)" }} />
-              <div style={{
-                position: "absolute", bottom: 10, left: 0, right: 0, textAlign: "center",
-                fontWeight: 900, fontSize: 14, color: "#fff", textShadow: "0 2px 8px rgba(0,0,0,0.7)"
-              }}>
-                🔨 Мелкий ремонт
-              </div>
-            </div>
-          </div>
-
-          <div style={{ padding: "16px 24px 8px", background: "#F0FBF4", borderBottom: "2px solid #C6EDD5" }}>
+          {/* Шапка страницы 2 */}
+          <div style={{
+            background: "linear-gradient(135deg, #1A7A3F 0%, #3DBA6F 100%)",
+            padding: "16px 24px",
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12
+          }}>
             <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-              <span style={{ fontSize: 32 }}>🌿</span>
+              <span style={{ fontSize: 36 }}>🌿</span>
               <div>
-                <div style={{ fontFamily: "Caveat, cursive", fontSize: 30, color: "#1A7A3F", fontWeight: 700, lineHeight: 1 }}>
+                <div style={{ fontFamily: "Caveat, cursive", fontSize: 32, color: "#fff", fontWeight: 700, lineHeight: 1, textShadow: "0 2px 8px rgba(0,0,0,0.25)" }}>
                   Зелёные руки
                 </div>
-                <div style={{ fontWeight: 900, fontSize: 14, color: "#1A2E1A", marginTop: 3 }}>
-                  Разнорабочие · <span style={{ color: "#3DBA6F" }}>📍 НЕМЧИНОВКА</span>
+                <div style={{ fontWeight: 800, fontSize: 13, color: "rgba(255,255,255,0.92)", marginTop: 4 }}>
+                  Разнорабочие в Немчиновке
                 </div>
               </div>
             </div>
+            <span style={{
+              background: "#FFD93D", color: "#1A2E1A",
+              borderRadius: 20, padding: "6px 13px",
+              fontWeight: 900, fontSize: 13, letterSpacing: 0.4, flexShrink: 0
+            }}>
+              📍 НЕМЧИНОВКА
+            </span>
           </div>
 
           <div style={{ padding: "14px 24px 10px", background: "#fff" }}>
@@ -300,32 +285,32 @@ export default function Booklet() {
             </div>
           </div>
 
-          <div style={{ padding: "10px 24px 12px", background: "#F0FBF4", borderTop: "2px solid #C6EDD5" }}>
+          <div style={{ padding: "12px 24px 150px", background: "#F0FBF4", borderTop: "2px solid #C6EDD5" }}>
             <div style={{
               fontWeight: 900, fontSize: 17, color: "#1A2E1A",
-              borderLeft: "5px solid #A78BFA", paddingLeft: 11, marginBottom: 10
+              borderLeft: "5px solid #A78BFA", paddingLeft: 11, marginBottom: 12
             }}>
               Как это работает
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               {[
-                { n: "1", e: "📞", t: "Звонок", d: "Опишите задачу" },
+                { n: "1", e: "📞", t: "Звонок",  d: "Опишите задачу" },
                 { n: "2", e: "🚗", t: "Приедем", d: "Точно в срок" },
-                { n: "3", e: "✅", t: "Сделаем", d: "Чисто и аккуратно" },
-                { n: "4", e: "💳", t: "Оплата", d: "После работы" },
+                { n: "3", e: "✅", t: "Сделаем", d: "Аккуратно" },
+                { n: "4", e: "💳", t: "Оплата",  d: "После работы" },
               ].map(s => (
                 <div key={s.n} style={{
                   flex: 1, background: "#fff", borderRadius: 12,
-                  padding: "10px 4px", border: "2px solid #C6EDD5", textAlign: "center"
+                  padding: "12px 4px 10px", border: "2px solid #C6EDD5", textAlign: "center"
                 }}>
                   <div style={{
-                    width: 24, height: 24, background: "#3DBA6F",
-                    borderRadius: "50%", color: "#fff", fontWeight: 900, fontSize: 13,
-                    display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 5px"
+                    width: 26, height: 26, background: "#3DBA6F",
+                    borderRadius: "50%", color: "#fff", fontWeight: 900, fontSize: 14,
+                    display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 6px"
                   }}>{s.n}</div>
-                  <div style={{ fontSize: 22 }}>{s.e}</div>
-                  <div style={{ fontWeight: 900, fontSize: 12, color: "#1A2E1A", marginTop: 3 }}>{s.t}</div>
-                  <div style={{ fontSize: 10, color: "#777", fontWeight: 700, marginTop: 2, lineHeight: 1.3 }}>{s.d}</div>
+                  <div style={{ fontSize: 24 }}>{s.e}</div>
+                  <div style={{ fontWeight: 900, fontSize: 12, color: "#1A2E1A", marginTop: 4 }}>{s.t}</div>
+                  <div style={{ fontSize: 10, color: "#777", fontWeight: 700, marginTop: 3, lineHeight: 1.3 }}>{s.d}</div>
                 </div>
               ))}
             </div>
@@ -337,7 +322,7 @@ export default function Booklet() {
             padding: "14px 22px"
           }}>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 9 }}>
-              {["📸 Фотоотчёт", "🛠️ Свой инструмент", "🚀 Срочный выезд — без доплат"].map(a => (
+              {["🛠️ Свой инструмент", "💯 Оплата после работы", "🚀 Срочный выезд — без доплат"].map(a => (
                 <span key={a} style={{
                   background: "rgba(255,255,255,0.16)", color: "#fff",
                   borderRadius: 20, padding: "4px 11px",
